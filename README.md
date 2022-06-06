@@ -1,7 +1,5 @@
 # Consumer IoT Platform
 
-A new Flutter project.
-
 ## Folder Structure:
 
 - Core:
@@ -22,6 +20,7 @@ A new Flutter project.
 ## Flutter App Coding Guidelines:
 
 - Using latest stable version of Flutter `3.0.1`.
+- ![image](https://user-images.githubusercontent.com/90178033/172199999-a1322107-f464-48fa-802c-2f04aa05071f.png)
 - Use `lower_case_file_names.dart`.
 
 ## Used Packages:
