@@ -1,5 +1,8 @@
 # Consumer IoT Platform
 
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
+
+
 ## Folder Structure - folder by screens
 
 The point of a structure is to make it easy to find stuff & make changes as new requirements arise. A good structure does this for both experienced and new developers. 
