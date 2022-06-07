@@ -21,6 +21,7 @@ dependencies:
   syncfusion_flutter_core: ^20.1.58+1
   syncfusion_flutter_gauges: ^20.1.58
   shared_preferences: ^2.0.15
+  flutter_svg: ^1.1.0
   
 
 dev_dependencies:
@@ -33,6 +34,12 @@ dev_dependencies:
   flutter_gen_runner: ^4.2.1
   retrofit_generator: ^4.0.1 
   json_serializable: ^6.2.0
+
+
+flutter_gen:
+  line_length: 120 
+  integrations:
+    flutter_svg: true
 
 flutter:
   uses-material-design: true

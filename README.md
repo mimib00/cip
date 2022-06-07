@@ -60,4 +60,5 @@ The point of a structure is to make it easy to find stuff & make changes as new 
 - `syncfusion_flutter_charts` - Charting library.
 - `syncfusion_flutter_core` - Core library for Data Visualization.
 - `syncfusion_flutter_gauges` - Gauge library for Data Visualization.
+- `flutter_svg` - SVG image loading library.
 
