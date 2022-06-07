@@ -33,7 +33,12 @@ class Responsive extends StatelessWidget {
           ? const Size(597, 833)
           : const Size(1024, 833);
 
-  static int intR(BuildContext context, {required int mobile, required int tablet, required int desktop}) {
+  static int intR(
+    BuildContext context, {
+    required int mobile,
+    required int tablet,
+    required int desktop,
+  }) {
     if (isMobile(context)) {
       return mobile;
     } else if (isTablet(context)) {

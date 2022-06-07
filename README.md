@@ -1,7 +1,7 @@
 # Consumer IoT Platform
 
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
-
+[![pub package](https://img.shields.io/pub/v/get.svg?label=get&color=blue)](https://pub.dev/packages/get)
 
 ## Folder Structure - folder by screens
 
@@ -40,8 +40,10 @@ The point of a structure is to make it easy to find stuff & make changes as new 
 - Use `lower_case_file_names.dart`.
 - Minimize use of statefull widgets.
 - Use `const` for all constants.
-- Restrict use of `setState()`.
+- Minimize use of `setState()`.
 - Use Named Routes for all the screens.
+- Use line length `120` for dart files.
+
 
 
 ## Used Packages:
