@@ -17,9 +17,9 @@ dependencies:
   flutter_screenutil: ^5.5.3+2
   get: ^4.6.5
   retrofit: ^3.0.1+1
-  syncfusion_flutter_charts: ^20.1.58+1
-  syncfusion_flutter_core: ^20.1.58+1
-  syncfusion_flutter_gauges: ^20.1.58
+  syncfusion_flutter_charts: ^20.1.59
+  syncfusion_flutter_core: ^20.1.59
+  syncfusion_flutter_gauges: ^20.1.59
   shared_preferences: ^2.0.15
   flutter_svg: ^1.1.0
   
@@ -27,13 +27,17 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test: ^1.21.1
 
   flutter_lints: ^2.0.1
   very_good_analysis: ^3.0.0
   build_runner: ^2.1.11
-  flutter_gen_runner: ^4.2.1
+  flutter_gen_runner: ^4.2.1+1
   retrofit_generator: ^4.0.1 
   json_serializable: ^6.2.0
+  
 
 
 flutter_gen:

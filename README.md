@@ -61,4 +61,14 @@ The point of a structure is to make it easy to find stuff & make changes as new 
 - `syncfusion_flutter_core` - Core library for Data Visualization.
 - `syncfusion_flutter_gauges` - Gauge library for Data Visualization.
 - `flutter_svg` - SVG image loading library.
+- `flutter_driver` - Flutter Driver for testing (Required for Appium).
+
+## Testing:
+
+We are using [Appium Flutter Driver](https://github.com/appium-userland/appium-flutter-driver) for testing
+
+If you are unfamiliar with running Appium tests, start with [Appium Getting Starting](http://appium.io/docs/en/about-appium/getting-started/) first.
+
+The must be compiled in `debug` or `profile` mode, because `Flutter Driver does not support running in release mode.`.
+
 

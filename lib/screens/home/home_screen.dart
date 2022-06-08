@@ -1,6 +1,8 @@
+import 'package:cip/screens/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
   @override
@@ -10,7 +12,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: const Center(
-        child: Text('Home'),
+        child: Text('Logged IN'),
       ),
     );
   }
