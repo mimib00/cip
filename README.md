@@ -14,6 +14,11 @@ The point of a structure is to make it easy to find stuff & make changes as new 
   - `localization`- *Contains all the localization files for the app.*
   - `routes` - *Contains all the routes for the app.*
   - `controllers`- *All the gloablly used controllers for the app.*
+  - `api`- *Contains all the API functions.*
+  - `theme`- *Contains the global app theme data.*
+
+- `gen`:
+  *Contains Asset genrated bundle*
 
 - `meta`:
 
