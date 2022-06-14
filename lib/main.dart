@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.fadeIn,
       getPages: Routes.allRoutes,
-      initialRoute: Routes.home,
+      initialRoute: Routes.azureIotHubPoc,
 
       //TODO : Add theme
       theme: ThemeData(
