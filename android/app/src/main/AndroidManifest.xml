@@ -2,6 +2,7 @@
     package="com.example.cip">
    <application
         android:label="cip"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
