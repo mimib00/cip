@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cip/core/localization/locale.dart';
 import 'package:cip/core/locator.dart' as locator;
 import 'package:cip/core/routes/routes.dart';
@@ -5,7 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:get/get.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   // Enable integration testing using Appium with the Flutter Driver extension.
   enableFlutterDriverExtension();
 

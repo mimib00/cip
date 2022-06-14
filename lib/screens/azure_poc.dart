@@ -1,10 +1,21 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:signalr_netcore/ihub_protocol.dart';
 import 'package:signalr_netcore/signalr_client.dart';
+
+class HttpOverrideCertificateVerificationInDev extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
 
 class AzurePoc extends StatefulWidget {
   const AzurePoc({super.key});
@@ -42,20 +53,40 @@ class _AzurePocState extends State<AzurePoc> {
   }
 
   late Logger _logger;
-  HubConnection? _hubConnection;
+
+  void _httpClientCreateCallback(Client httpClient) {
+    HttpOverrides.global = HttpOverrideCertificateVerificationInDev();
+  }
 
   Future<HubConnection?> _getHubConnection() async {
+    _logger = Logger('AzurePoc');
+    final headers = MessageHeaders()..setHeaderValue('AccessKey', 'FTSNhcCNXwRB1cRqmCs+NCpB8vkNpX5wVG8jRNVjqig=');
+    final httpOptions = HttpConnectionOptions(
+      logger: _logger,
+      headers: headers,
+      logMessageContent: true,
+      httpClient: WebSupportingHttpClient(_logger, httpClientCreateCallback: _httpClientCreateCallback),
+    );
     // The location of the SignalR Server.
-    const serverUrl = 'https://192.168.10.50:51001';
-// Creates the connection by using the HubConnectionBuilder.
-    final hubConnection =
-        HubConnectionBuilder().withUrl(Uri.parse(serverUrl).toString()).withAutomaticReconnect().build();
+    const serverUrl = 'https://20.62.133.65';
+    // Creates the connection by using the HubConnectionBuilder.
+    final hubConnection = HubConnectionBuilder()
+        .withUrl(serverUrl, options: httpOptions)
+        .withAutomaticReconnect(retryDelays: [2000, 5000, 10000, 20000]).build();
+    if (hubConnection.state != HubConnectionState.Connected) {
+      log('Connecting to SignalR Server...');
+      await hubConnection.start();
+    }
     await hubConnection.start();
+    hubConnection.on('telemetry', (data) {
+      log('Received telemetry: $data');
+    });
     hubConnection.stream('messages', []).listen((message) {
       log('Received message: $message');
     });
-// When the connection is closed, print out a message to the console.
-    // hubConnection.onclose(( error = Error?) {
+    hubConnection.onclose(({error}) => log('Connection closed: $error'));
+    // When the connection is closed, print out a message to the console.
+    // hubConnection.onclose((error) {
     //   log('Connection closed: $error');
     // });
     return null;
