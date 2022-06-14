@@ -64,6 +64,7 @@ class _AzurePocState extends State<AzurePoc> {
     final httpOptions = HttpConnectionOptions(
       logger: _logger,
       headers: headers,
+      accessTokenFactory: () => Future.value('FTSNhcCNXwRB1cRqmCs+NCpB8vkNpX5wVG8jRNVjqig='),
       logMessageContent: true,
       httpClient: WebSupportingHttpClient(_logger, httpClientCreateCallback: _httpClientCreateCallback),
     );
