@@ -13,11 +13,14 @@ void _httpClientCreateCallback(Client httpClient) {
 
 Future<HubConnection?> getNetcoreConnection() async {
   Logger logger = Logger('AzurePoc');
-  final headers = MessageHeaders()..setHeaderValue('AccessKey', 'FTSNhcCNXwRB1cRqmCs+NCpB8vkNpX5wVG8jRNVjqig=');
+  final headers = MessageHeaders()
+    ..setHeaderValue('AccessKey',
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IjUxMDk4ODE1NyIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2NTUzNzg1NTEsImV4cCI6MTY1NTM4MjE1MSwiaWF0IjoxNjU1Mzc4NTUxLCJhdWQiOiJodHRwczovL3JrMTgwLWRldi10ZWxlbWV0cnkuc2VydmljZS5zaWduYWxyLm5ldC9jbGllbnQvP2h1Yj1ub3RpZmljYXRpb24ifQ.kvHPm5nOvaw4sgVDRp878UtU-q6at3CjPLr48WpBS1g');
   final httpOptions = HttpConnectionOptions(
     logger: logger,
     headers: headers,
-    accessTokenFactory: () => Future.value('FTSNhcCNXwRB1cRqmCs+NCpB8vkNpX5wVG8jRNVjqig='),
+    accessTokenFactory: () => Future.value(
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IjUxMDk4ODE1NyIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2NTUzNzg1NTEsImV4cCI6MTY1NTM4MjE1MSwiaWF0IjoxNjU1Mzc4NTUxLCJhdWQiOiJodHRwczovL3JrMTgwLWRldi10ZWxlbWV0cnkuc2VydmljZS5zaWduYWxyLm5ldC9jbGllbnQvP2h1Yj1ub3RpZmljYXRpb24ifQ.kvHPm5nOvaw4sgVDRp878UtU-q6at3CjPLr48WpBS1g'),
     logMessageContent: true,
     httpClient: WebSupportingHttpClient(logger, httpClientCreateCallback: _httpClientCreateCallback),
   );
@@ -28,16 +31,19 @@ Future<HubConnection?> getNetcoreConnection() async {
       .withUrl(serverUrl, options: httpOptions)
       .withAutomaticReconnect(retryDelays: [2000, 5000, 10000, 20000]).build();
   if (hubConnection.state != HubConnectionState.Connected) {
+    //await hubConnection.stop();
     log('Connecting to SignalR Netcore Server...');
     await hubConnection.start();
+
+    log(hubConnection.state.toString());
   }
-  await hubConnection.start();
-  hubConnection.on('telemetry', (data) {
+  // await hubConnection.start();
+  hubConnection.on('notify', (data) {
     log('Received telemetry: $data');
   });
-  hubConnection.stream('messages', []).listen((message) {
-    log('Received message: $message');
-  });
+  // hubConnection.stream('notify', []).listen((message) {
+  //   log('Received message: $message');
+  // });
   hubConnection.onclose(({error}) => log('Connection closed: $error'));
   // When the connection is closed, print out a message to the console.
   // hubConnection.onclose((error) {

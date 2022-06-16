@@ -1,14 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:cip/screens/signal_r/flutter.dart';
 import 'package:cip/screens/signal_r/netcore.dart';
-import 'package:cip/screens/signal_r/pure.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
-const serverUrl = 'https://20.62.133.65';
+const serverUrl = 'https://rk180-dev-telemetry.service.signalr.net/client/?hub=notification';
 const String endpoint = 'https://rk180-dev-telemetry.service.signalr.net';
 const String hostname = 'rk180-dev-telemetry.service.signalr.net';
 
@@ -71,8 +69,8 @@ class _AzurePocState extends State<AzurePoc> {
         child: ElevatedButton(
             onPressed: () {
               getNetcoreConnection();
-              getPureConnection();
-              getFlutterConnection();
+              // getPureConnection();
+              // getFlutterConnection();
             },
             child: const Text('Send message to Azure IoT Hub')),
       ),
